@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-md-12 col-xs-12">&nbsp;</div>
+    <div class="col-md-12 hidden-xs">&nbsp;</div>
+    <div class="col-md-12 col-xs-12">
+        <div class="col-md-1 hidden-xs">&nbsp;</div>
+        <div class="col-md-10 col-xs-12">
+            <div class="col-md-3 col-xs-12 no-padding traffic_light_parent text-center">
+                <div class="col-md-12 aling-traffic hidden-xs">&nbsp;</div>
+                <div class="col-md-12 col-xs-4 traffic_light_container">
+                    <div class="traffic_light red" ng-class="{ 'active' :mc.status == 0 , 'inactive' : mc.status != 0}"></div>
+                </div>
+                <div class="col-md-12 col-xs-4 traffic_light_container">
+                    <div class="traffic_light yellow" ng-class="{ 'active' : mc.status == 2 , 'inactive' : mc.status != 2}"></div>
+                </div>
+                <div class="col-md-12 col-xs-4 traffic_light_container">
+                    <div class="traffic_light green" ng-class="{ 'active' : mc.status == 1 , 'inactive' : mc.status != 1}"></div>
+                </div>
+            </div>
+            <div class="col-md-9 col-xs-12 no-padding">
+                <div class="col-md-12 col-xs-12 no-padding">
+                    <div class="col-md-12 col-xs-12 text-center messages-title ">Status</div>
+                    <div class="col-md-12 col-xs-12 no-padding messages_container ">
+                        <div class="col-md-12 col-xs-12 no-padding conversation-list " ng-repeat="(key, conversation) in mc.conversations |
+                        orderBy: '-date' ">
+                            <div class="col-md-12 text-right data-log no-padding">
+                                <div class="col-md-12 col-xs-12 no-padding text-left">
+                                    <span class="glyphicon glyphicon-user "></span>
+                                    <label class="no-weight ">{{conversation.author ? conversation.author : 'Nadie' }}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-xs-12 no-padding">
+                                <span class="glyphicon glyphicon-exclamation-sign" ng-class="{'color-yellow': conversation.status == 2 , 'color-green': conversation.status == 1 , 'color-red': conversation.status == 0 }"></span>
+                                <label class="no-weight ">{{conversation.message ? conversation.message : 'Sin reporte' }}</label>
+                            </div>
+                            <div class="col-md-12 data-log col-xs-12 text-right">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                                <label class="no-weight ">&nbsp;{{ mc.getDate( conversation.date) }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1 col-xs-12">&nbsp;</div>
+</div>

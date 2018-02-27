@@ -1,0 +1,63 @@
+.user-name{
+    margin-left: 5px;
+    padding: 5px 0px;
+}
+.data-log{
+    font-size: 14px;
+    color: #c9bfc9;
+}
+.user-container{
+    font-size: 14px;
+}
+.user-container label{
+    letter-spacing: 0.3px;
+}
+.no-weight{
+    font-weight: 300 !important;
+}
+.margin-top:first-child{
+    margin-bottom: 10px;
+}
+.container{
+    height: 60vh;
+}
+.color{
+    color: #2794ae;
+}
+.color-user{
+    color: #b3deed;
+}
+.chat_global_container {
+    height: 100% !important;
+}
+.chat_container{
+    height: calc(100% - 50px);
+}
+.user-container{
+    overflow-y: scroll;
+    height: 100%;
+    background-color: #eff3f5;
+}
+.border-left-decorate{
+    border-left: 4px solid #f86f82;
+}
+.background-white{
+    background-color: white;
+}
+.background-grey{
+    background-color: #F2F4F7;
+}
+a {
+    color: #2794ae;
+    text-decoration: none;
+}
+a:hover{
+    color: #2794ae;
+    text-decoration: none;
+}
+
+.conversation-list{
+    padding: 10px 20px;
+    border-bottom: 1px solid #a4a4a4;
+    min-height: 40px;
+}
