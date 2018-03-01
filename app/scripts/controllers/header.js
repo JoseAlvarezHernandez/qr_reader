@@ -28,16 +28,11 @@ function HeaderController(Resource, Utils, $scope, $window, $compile) {
         (newVal, oldVal) => {
             if (newVal == undefined)
                 return;
-            hc.isLogged = newVal;
+            hc.isLogged = (newVal == 'true');
         }
     );
     //functions
     hc.logout = logout;
-    hc.login = login;
-
-    function login(){
-        $window.location.href = `#!/login`;
-    }
 
     function logout() {
         hc.isLogged = false;

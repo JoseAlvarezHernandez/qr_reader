@@ -1,9 +1,9 @@
 angular
     .module('QRreader')
-    .controller('mainController', mainController);
+    .controller('MainController', MainController);
 
-mainController.$inject = ['Resource'];
+MainController.$inject = ['Resource'];
 
-function mainController(Resource) {
+function MainController(Resource) {
     const mc = this;
 }

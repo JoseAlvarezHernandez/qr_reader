@@ -1,0 +1,42 @@
+<div class="col-md-12 col-xs-12">&nbsp;</div>
+<div class="col-md-12 hidden-xs">&nbsp;</div>
+<div class="col-md-12 col-xs-12">
+    <div class="col-md-1 hidden-xs">&nbsp;</div>
+    <div class="col-md-10 col-xs-12 box-shadow no-padding">
+        <div class="col-md-12 header-agents no-padding">
+            <div class="col-md-1 hidden-xs header-agents-text">&nbsp;</div>
+            <div class="right-inner-addon col-md-5 col-xs-10 header-agents-text">
+                <input class="no-margin-bottom input-search" ng-model="searchAgent" placeholder="Usuarios"></input>
+            </div>
+            <div class="col-md-3 hidden-xs no-padding header-agents-text">
+                <label class="no-margin-bottom col-md-12 text-center no-padding">Email</label>
+            </div>
+            <div class="col-md-2 hidden-xs no-padding header-agents-text">
+                <label class="no-margin-bottom col-md-12 text-center no-padding">Telefono</label>
+            </div>
+            <div class="col-md-1 col-xs-1 header-agents-text">
+                <span ng-click="uc.addUser();" class="col-md-12 text-center glyphicon glyphicon-plus no-padding"></span>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 content-agents no-padding">
+            <div class="col-md-12 col-xs-12 borders" ng-repeat="(key, user) in uc.resources  track by $index">
+                <div class="col-md-1 col-xs-3 no-padding-right-md">
+                    <label class="circle circle-text circle-no-active">
+                                {{uc.getInitials(user.name)}}
+                            </label>
+                </div>
+                <div class="col-md-5 col-xs-9 content-agents-text">
+                    <label class="col-xs-12 ellipsis no-padding" data-toggle="tooltip" title="{{user.name}}">{{user.name}}</label>
+                </div>
+                <div class="col-md-3 hidden-xs content-agents-text">
+                    <label class="col-xs-12 ellipsis no-padding" data-toggle="tooltip" title="{{user.email}}">{{user.email}}</label>
+                </div>
+                <div class="col-md-3 hidden-xs content-agents-text">
+                    <label class="col-xs-12 ellipsis no-padding" data-toggle="tooltip" title="{{user.email}}">{{user.phone}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1 hidden-xs">&nbsp;</div>
+</div>
+<div class="col-md-12 hidden-xs">&nbsp;</div>

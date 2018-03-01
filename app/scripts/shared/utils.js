@@ -15,6 +15,8 @@ function Utils($window) {
         compareObjects: compareObjects,
         tokenExpired: tokenExpired,
         getTokenExpired: getTokenExpired,
+        getInitials: getInitials,
+        isEmptyObj: isEmptyObj,
     };
     function getTokenExpired() {
         return isTokenExpired;
@@ -41,6 +43,15 @@ function Utils($window) {
             return true;
         }
     }
+    function isEmptyObj(data) {
+        let fields = false;
+        for (var elem in data) {
+            if (data[elem].trim() == '') {
+                fields = true;
+            }
+        }
+        return fields;
+    }
     function validateFieldEmpty(field) {
         const fieldR = /([^\s])/;
         if (field == null) {
@@ -50,5 +61,19 @@ function Utils($window) {
         } else {
             return true;
         }
+    }
+    function getInitials(name) {
+        let res = '';
+        if (typeof name === 'undefined' || name == null) {
+            res = 'AA';
+        } else {
+            let namePart = name.split(" ");
+            if (namePart[1]) {
+                res = namePart[0].substr(0, 1) + namePart[1].substr(0, 1);
+            } else {
+                res = namePart[0].substr(0, 1) + namePart[0].substr(0, 1);
+            }
+        }
+        return res;
     }
 }

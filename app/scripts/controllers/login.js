@@ -17,7 +17,6 @@ LoginController.$inject = ['Resource', 'Utils', '$window'];
  */
 function LoginController(Resource, Utils, $window) {
   const lc = this;
-  console.log(lc);
   //variables
   lc.isLogged = localStorage.getItem('isLogged') == null ? false : localStorage.getItem('isLogged');
   lc.userId = localStorage.getItem('userId');
@@ -66,25 +65,25 @@ function LoginController(Resource, Utils, $window) {
 
   function sendLogin(loginData) {
     Resource.login(loginData).then((data) => {
-      if (data.data && data.data.name && data.status == 200) {
-        localStorage.setItem('bearer', `Bearer ${data.data.token}`);
+      data = data.data;
+      if (data.name) {
+        localStorage.setItem('bearer', `Bearer ${data.token}`);
         localStorage.setItem('isLogged', true);
-        localStorage.setItem('name', data.data.name);
-        localStorage.setItem('email', data.data.email);
-        localStorage.setItem('userId', data.data.userId);
+        localStorage.setItem('name', data.name);
+        localStorage.setItem('email', data.email);
+        localStorage.setItem('userId', data.userId);
         lc.isLogged = true;
         //default values
         lc.loginData.password = '';
         lc.error = ''
         $window.location.href = '#!/admin';
       } else {
-        switch (data.status) {
-          case 401:
-            lc.error = 'Usuario y/o contraseña erroneos.'
-            break;
-        }
+        if (data.message)
+          lc.error = 'Usuario y/o contraseña erroneos.'
+        else
+          lc.error = 'Ocurrió un error en la petición. Consulta al administrador del sitio';
       }
-    }).catch(function (data) {
+    }, function (data) {
       lc.error = 'Ocurrió un error en la petición. Consulta al administrador del sitio';
     });
   }

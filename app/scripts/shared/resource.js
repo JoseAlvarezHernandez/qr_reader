@@ -11,8 +11,50 @@ Resource.$inject = ['$http', 'env'];
 function Resource($http, env) {
     return {
         login: login,
-        shortUrl: shortUrl
+        shortUrl: shortUrl,
+        getAllUsers: getAllUsers,
+        addUser: addUser,
+        getQr: getQr,
     };
+
+    function getQr(qrId) {
+        let http = {
+            method: 'GET',
+            url: `${env.api}code/${qrId}`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            }
+        };
+        return ($http(http));
+    }
+
+    function addUser(data, token) {
+        let http = {
+            method: 'POST',
+            url: `${env.api}users`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': token
+            },
+            data: data
+        };
+        return ($http(http));
+    }
+
+    function getAllUsers(token) {
+        let http = {
+            method: 'GET',
+            url: `${env.api}users`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': token
+            }
+        };
+        return ($http(http));
+    }
     /**
     * 
     * @param {username, password, app}  
@@ -25,44 +67,34 @@ function Resource($http, env) {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
             },
-            data: data,
+            data: data
         };
         return ($http(http));
     }
-    function shortUrl(date, init, end) {
-        return new Promise(function (resolve) {
-            let http = {
-                method: 'POST',
-                url: 'https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyC8Y9m0FzN6fWTzsguUiJ1VQj5ILFLmTRo',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                },
-                data: {
-                    'longUrl': `https://inncol-node-server.herokuapp.com/qr/${date}`
-                },
-            };
-            $http(http).then(function (data) {
-                let httpApi = {
-                    method: 'POST',
-                    url: 'https://api-inncol.herokuapp.com/api/code',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                    },
-                    data: {
-                        "qrCodeId": date,
-                        "initDate": init,
-                        "endDate": end,
-                        "shortenURl": data.data.id,
-                        "createdBy": 1
-                    }
-                };
-                $http(httpApi).then(function (api) {
-                    resolve(data.data.id);
-                });
-            });
-        });
-
+    /**
+     * 
+     * @param {*} date 
+     * @param {*} init 
+     * @param {*} end 
+     * @param {*} userId 
+     */
+    function shortUrl(qrCodeId, initDate, endDate, description, name, token) {
+        let http = {
+            method: 'POST',
+            url: `${env.api}code`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': token,
+            },
+            data: {
+                qrCodeId,
+                initDate,
+                endDate,
+                description,
+                name
+            },
+        };
+        return ($http(http));
     }
 }
